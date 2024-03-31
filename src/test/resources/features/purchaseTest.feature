@@ -15,7 +15,7 @@ Feature: Order Placement Functionalities
     Then User fills in all the web form fields
       | Name        | Turhan              |
       | Country     | UK                  |
-      | City        | Gloucester          |
+      | City        | London              |
       | Credit Card | 7678 6787 6423 1233 |
       | Month       | 05                  |
       | Year        | 2024                |
