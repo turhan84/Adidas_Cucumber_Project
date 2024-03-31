@@ -64,6 +64,7 @@ public class Purchase_StepDefs {
     @When("User navigates to the {string} page")
     public void user_navigates_to_the_page(String cartBtn) {
         homePage.cartBtn.click();
+
     }
 
     @When("User deletes {string} from the cart")
