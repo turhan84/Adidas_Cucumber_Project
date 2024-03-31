@@ -27,8 +27,9 @@ public class CartPage {
 
    // @FindBy(className = "table-responsive")
    // public List<WebElement> listOfAddedItems;
-    //@FindBy(xpath = "//td/a")
-   // public List<WebElement> listOfAddedItems;
+
+    @FindBy(xpath = "//td/a")
+    public List<WebElement> listOfAddedItemsNumber;
 
 
 
@@ -75,12 +76,15 @@ public class CartPage {
     public void deleteItems(String item) {
 
 
+        for (WebElement each : listOfAddedItemsNumber) {
+
+
         int index = 0;
         for (WebElement eachItem : listOfAddedItems) {
-            System.out.println("listOfAddedItems.size() = " + listOfAddedItems.size());
+          //  System.out.println("listOfAddedItems.size() = " + listOfAddedItems.size());
 
             index++;
-            if (listOfAddedItems.size()==1){index++;}
+            if (listOfAddedItems.size()==1){index=1;}
             if (eachItem.getText().contains(item)) {
 
                 String xpath = "(//a[text()='Delete'])" + "[" + index + "]";
@@ -92,8 +96,9 @@ public class CartPage {
 
                 wait.until(ExpectedConditions.urlContains("cart.html#"));
                 //BrowserUtils.sleep(5);
+                break;
             }
-
+        }
         }
 
 
