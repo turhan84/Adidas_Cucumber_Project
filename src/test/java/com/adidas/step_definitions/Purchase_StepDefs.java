@@ -73,6 +73,8 @@ public class Purchase_StepDefs {
         wait.until(ExpectedConditions.visibilityOf(cartPage.totalPurchase));
         cartPage.deleteItems(item);
 
+        //wait.until(ExpectedConditions.urlContains("cart.html#"));
+
         //  wait.until(ExpectedConditions.visibilityOfAllElements(cartPage.listOfAddedItems));
          Driver.getDriver().navigate().refresh();
 

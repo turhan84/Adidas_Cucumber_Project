@@ -8,10 +8,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 
 public class CartPage {
+    WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
     public CartPage() {
         PageFactory.initElements(Driver.getDriver(), this);
     }
@@ -68,13 +71,16 @@ public class CartPage {
     @FindBy(xpath = "//a[text()='Delete']")
     public WebElement deleteBtn;
 
+
     public void deleteItems(String item) {
 
-/*
+
         int index = 0;
         for (WebElement eachItem : listOfAddedItems) {
-         //   System.out.println("listOfAddedItems.size() = " + listOfAddedItems.size());
+            System.out.println("listOfAddedItems.size() = " + listOfAddedItems.size());
+
             index++;
+            if (listOfAddedItems.size()==1){index++;}
             if (eachItem.getText().contains(item)) {
 
                 String xpath = "(//a[text()='Delete'])" + "[" + index + "]";
@@ -84,12 +90,14 @@ public class CartPage {
 
                 //TODO -> i can not found for wait method check for it
 
-                BrowserUtils.sleep(2);
+                wait.until(ExpectedConditions.urlContains("cart.html#"));
+                //BrowserUtils.sleep(5);
             }
-        }
-*/
 
-        List<WebElement> titleElements = Driver.getDriver().findElements(By.xpath("//tbody[@id='tbodyid']/tr/td[2]"));
+        }
+
+
+      /*  List<WebElement> titleElements = Driver.getDriver().findElements(By.xpath("//tbody[@id='tbodyid']/tr/td[2]"));
 
         for (WebElement titleElement : titleElements) {
             if (titleElement.getText().equals(item)) {
@@ -104,7 +112,7 @@ public class CartPage {
                 break;
             }
         }
-
+*/
     }
 
 
