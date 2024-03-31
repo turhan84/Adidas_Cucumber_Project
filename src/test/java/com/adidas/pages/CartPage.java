@@ -141,7 +141,32 @@ public class CartPage {
         return sum;
 
     }
-}
+
+
+    public void idAndAmount(){
+        String[] lines = orderInfo.getText().split("\n");
+
+       
+        String idLine = null;
+        String amountLine = null;
+        for (String eachLine : lines) {
+            if (eachLine.startsWith("Id:")) {
+                idLine = eachLine;
+            } else if (eachLine.startsWith("Amount:")) {
+                amountLine = eachLine;
+            }
+        }
+
+        String id = idLine.split(": ")[1];
+        String amount = amountLine.split(": ")[1].split(" ")[0];
+
+        System.out.println("Purchase ID: " + id);
+        System.out.println("Purchase Amount: " + amount + " USD");
+    }
+    }
+
+
+
 
 
 

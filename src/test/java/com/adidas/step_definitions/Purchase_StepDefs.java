@@ -117,7 +117,8 @@ public class Purchase_StepDefs {
     @Then("User should capture and log the purchase ID and Amount")
     public void user_should_capture_and_log_the_purchase_id_and_amount() {
 
-        System.out.println("Order Info;\n" + cartPage.orderInfo.getText());
+        //System.out.println("Order Info;\n" + cartPage.orderInfo.getText());
+        cartPage.idAndAmount();
 
     }
 
