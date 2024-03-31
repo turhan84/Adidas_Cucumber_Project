@@ -75,6 +75,8 @@ public class CartPage {
 
     public void deleteItems(String item) {
 
+        //Solution 1
+
 
         for (WebElement each : listOfAddedItemsNumber) {
 
@@ -84,7 +86,8 @@ public class CartPage {
           //  System.out.println("listOfAddedItems.size() = " + listOfAddedItems.size());
 
             index++;
-            if (listOfAddedItems.size()==1){index=1;}
+            if (listOfAddedItems.size()==1){index=2;}
+
             if (eachItem.getText().contains(item)) {
 
                 String xpath = "(//a[text()='Delete'])" + "[" + index + "]";
@@ -102,6 +105,11 @@ public class CartPage {
         }
 
 
+
+
+
+        //Solution 2
+
       /*  List<WebElement> titleElements = Driver.getDriver().findElements(By.xpath("//tbody[@id='tbodyid']/tr/td[2]"));
 
         for (WebElement titleElement : titleElements) {
@@ -118,6 +126,30 @@ public class CartPage {
             }
         }
 */
+
+//=================================================================
+/*
+
+        for (int index = 0; index < listOfAddedItems.size(); index++) {
+            WebElement eachItem = listOfAddedItems.get(index);
+
+            if (eachItem.getText().contains(item)) {
+
+                String xpath = "(//a[text()='Delete'])[" + (index+1) + "]";
+
+                Driver.getDriver().findElement(By.xpath(xpath)).click();
+
+                wait.until(ExpectedConditions.urlContains("cart.html#"));
+
+                break;
+            }
+        }
+*/
+
+
+
+
+
     }
 
 
