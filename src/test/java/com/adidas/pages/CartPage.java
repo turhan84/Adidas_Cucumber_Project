@@ -3,6 +3,7 @@ package com.adidas.pages;
 import com.adidas.utilities.BrowserUtils;
 import com.adidas.utilities.Driver;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -69,9 +70,10 @@ public class CartPage {
 
     public void deleteItems(String item) {
 
+/*
         int index = 0;
         for (WebElement eachItem : listOfAddedItems) {
-            System.out.println("listOfAddedItems.size() = " + listOfAddedItems.size());
+         //   System.out.println("listOfAddedItems.size() = " + listOfAddedItems.size());
             index++;
             if (eachItem.getText().contains(item)) {
 
@@ -83,6 +85,23 @@ public class CartPage {
                 //TODO -> i can not found for wait method check for it
 
                 BrowserUtils.sleep(2);
+            }
+        }
+*/
+
+        List<WebElement> titleElements = Driver.getDriver().findElements(By.xpath("//tbody[@id='tbodyid']/tr/td[2]"));
+
+        for (WebElement titleElement : titleElements) {
+            if (titleElement.getText().equals(item)) {
+
+                WebElement parentRow = (WebElement) ((JavascriptExecutor) Driver.getDriver()).executeScript(
+                        "return arguments[0].parentNode;", titleElement);
+
+                WebElement deleteLink = parentRow.findElement(By.xpath(".//a[contains(text(),'Delete')]"));
+
+                deleteLink.click();
+
+                break;
             }
         }
 

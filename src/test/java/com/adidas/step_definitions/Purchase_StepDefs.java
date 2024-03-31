@@ -87,7 +87,6 @@ public class Purchase_StepDefs {
             cartPage.placeOrderBtn.click();
             wait.until(ExpectedConditions.elementToBeClickable(cartPage.purchaseBtn));
         } else if (option.equals("Purchase")) {
-
             cartPage.purchaseBtn.click();
         } else if (option.equals("Ok")) {
             cartPage.confirmBtn.click();
@@ -128,6 +127,9 @@ public class Purchase_StepDefs {
 //        String amout = Character.toString(cartPage.calculateTotal());
 //        amout = "Amount: " + amout + " USD";
 //        System.out.println(amout);
+
+        BrowserUtils.sleep(2);
+
         Assert.assertTrue(cartPage.orderInfo.getText().contains(expectedAmount));
 
     }
