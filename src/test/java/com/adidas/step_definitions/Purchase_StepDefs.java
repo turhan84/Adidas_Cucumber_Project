@@ -131,9 +131,13 @@ public class Purchase_StepDefs {
 //        amout = "Amount: " + amout + " USD";
 //        System.out.println(amout);
 
+
+
         BrowserUtils.sleep(2);
 
-        Assert.assertTrue(cartPage.orderInfo.getText().contains(expectedAmount));
+        Assert.assertTrue(cartPage.amount().contains(expectedAmount));
+
+
 
     }
 

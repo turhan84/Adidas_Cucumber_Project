@@ -15,6 +15,7 @@ import java.util.List;
 
 public class CartPage {
     WebDriverWait wait = new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(10));
+
     public CartPage() {
         PageFactory.initElements(Driver.getDriver(), this);
     }
@@ -25,16 +26,15 @@ public class CartPage {
     @FindBy(className = "success")
     public List<WebElement> listOfAddedItems;
 
-   // @FindBy(className = "table-responsive")
-   // public List<WebElement> listOfAddedItems;
+    // @FindBy(className = "table-responsive")
+    // public List<WebElement> listOfAddedItems;
 
     @FindBy(xpath = "//td/a")
     public List<WebElement> listOfAddedItemsNumber;
 
 
-
-   // @FindBy(xpath = "//tbody[@id='tbodyid']//a")
-   // public List<WebElement> listOfAddedItems;
+    // @FindBy(xpath = "//tbody[@id='tbodyid']//a")
+    // public List<WebElement> listOfAddedItems;
 
     @FindBy(id = "totalp")
     public WebElement totalPurchase;
@@ -81,31 +81,30 @@ public class CartPage {
         for (WebElement each : listOfAddedItemsNumber) {
 
 
-        int index = 0;
-        for (WebElement eachItem : listOfAddedItems) {
-          //  System.out.println("listOfAddedItems.size() = " + listOfAddedItems.size());
+            int index = 0;
+            for (WebElement eachItem : listOfAddedItems) {
+                //  System.out.println("listOfAddedItems.size() = " + listOfAddedItems.size());
 
-            index++;
-            if (listOfAddedItems.size()==1){index=2;}
+                index++;
+                if (listOfAddedItems.size() == 1) {
+                    index = 2;
+                }
 
-            if (eachItem.getText().contains(item)) {
+                if (eachItem.getText().contains(item)) {
 
-                String xpath = "(//a[text()='Delete'])" + "[" + index + "]";
-                //String xpath = "((//td/a))" + "[" + index + "]";
+                    String xpath = "(//a[text()='Delete'])" + "[" + index + "]";
+                    //String xpath = "((//td/a))" + "[" + index + "]";
 
-                Driver.getDriver().findElement(By.xpath(xpath)).click();
+                    Driver.getDriver().findElement(By.xpath(xpath)).click();
 
-                //TODO -> i can not found for wait method check for it
+                    //TODO -> i can not found for wait method check for it
 
-                wait.until(ExpectedConditions.urlContains("cart.html#"));
-                //BrowserUtils.sleep(5);
-                break;
+                    wait.until(ExpectedConditions.urlContains("cart.html#"));
+                    //BrowserUtils.sleep(5);
+                    break;
+                }
             }
         }
-        }
-
-
-
 
 
         //Solution 2
@@ -147,9 +146,6 @@ public class CartPage {
 */
 
 
-
-
-
     }
 
 
@@ -163,9 +159,10 @@ public class CartPage {
 
             for (String each : parts) {
                 try {
-                int number = Integer.parseInt(each);
-                sum+=number;
-                }catch (NumberFormatException e){}
+                    int number = Integer.parseInt(each);
+                    sum += number;
+                } catch (NumberFormatException e) {
+                }
             }
 
         }
@@ -175,10 +172,10 @@ public class CartPage {
     }
 
 
-    public void idAndAmount(){
+    public void idAndAmount() {
         String[] lines = orderInfo.getText().split("\n");
 
-       
+
         String idLine = null;
         String amountLine = null;
         for (String eachLine : lines) {
@@ -194,8 +191,26 @@ public class CartPage {
 
         System.out.println("Purchase ID: " + id);
         System.out.println("Purchase Amount: " + amount + " USD");
+
     }
+
+
+    public static String amount() {
+        String[] lines = new CartPage().orderInfo.getText().split("\n");
+
+        String amountLine = null;
+        for (String eachLine : lines) {
+            if (eachLine.startsWith("Amount:")) {
+                amountLine = eachLine;
+            }
+        }
+
+        String amount = amountLine.split(": ")[1].split(" ")[0];
+
+        return "Amount: " + amount + " USD";
     }
+
+}
 
 
 
