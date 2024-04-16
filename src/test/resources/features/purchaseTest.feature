@@ -2,6 +2,7 @@ Feature: Order Placement Functionalities
 
   Agile Story: As a customer, I should be able to place order
   from demoblaze website so that I can shop online
+Background:
 
   @wip
   Scenario: Placing a successful order
